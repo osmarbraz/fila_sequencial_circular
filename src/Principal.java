@@ -44,8 +44,13 @@ public class Principal {
      */
     public static boolean enfileirar(int[] _fila, int _valor) {
         if (N < TAMANHO_FILA) {
+            //Calcula a próxima posição
             fim = fim % TAMANHO_FILA;
-            _fila[fim++] = _valor;
+            //Adiciona o valor a fila
+            _fila[fim] = _valor;
+            //Incrementa a próxima posição
+            fim = fim + 1;
+            //Incrementa a quantidade de elementos
             N = N + 1;
             return true;
         } else {
