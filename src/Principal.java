@@ -36,7 +36,9 @@ public class Principal {
     }
 
     /**
-     * Adiciona um novo nó no final da fila. Também chamado de Enqueue.
+     * Adiciona um novo nó no final da fila. 
+     * 
+     * Também chamado de Enqueue.
      *
      * @param _fila Fila onde será inserido o novo elemento.
      * @param _valor Valor a ser inserido na fila.
@@ -60,7 +62,9 @@ public class Principal {
     }
 
     /**
-     * Acessa o primeiro nó da fila sem removê-lo. Também chamado de Peek.
+     * Acessa o primeiro nó da fila sem removê-lo. 
+     * 
+     * Também chamado de Peek.
      *
      * @param _fila Fila que contem os nós.
      * @param _n Quantidade de nós na lista.
@@ -96,7 +100,9 @@ public class Principal {
     }
 
     /**
-     * Remove um nó do inicio da fila. Também chamado de Dequeue.
+     * Remove um nó do inicio da fila. 
+     * 
+     * Também chamado de Dequeue.
      *
      * @param _fila fila que contêm os nós.
      * @return O nó que foi desemfileirado.
