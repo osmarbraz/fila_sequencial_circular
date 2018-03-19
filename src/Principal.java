@@ -24,7 +24,7 @@ public class Principal {
     /**
      * Tamanho atual da fila.
      */
-    private static int N = 0;
+    private static int n = 0;
 
     /**
      * Realiza a leitura dos dados dos nós.
@@ -45,7 +45,7 @@ public class Principal {
      * @return verdadeiro ou falso se conseguiu enfileirar
      */
     public static boolean enfileirar(int[] _fila, int _valor) {
-        if (N < TAMANHO_FILA) {
+        if (n < TAMANHO_FILA) {
             //Calcula a próxima posição
             fim = fim % TAMANHO_FILA;
             //Adiciona o valor a fila
@@ -53,7 +53,7 @@ public class Principal {
             //Incrementa a próxima posição
             fim = fim + 1;
             //Incrementa a quantidade de elementos
-            N = N + 1;
+            n = n + 1;
             return true;
         } else {
             System.out.println("Fila Cheia!");
@@ -108,11 +108,11 @@ public class Principal {
      * @return O nó que foi desemfileirado.
      */
     public static int desenfileirar(int[] _fila) {
-        if (N != 0) {
+        if (n != 0) {
             //Posiciona no próximo inicio
             inicio = inicio % TAMANHO_FILA;
             //Decrementa a quantidade de nós
-            N = N - 1;
+            n = n - 1;
             //Guarda o valor do inicio
             int valor = _fila[inicio];
             //Incrementa para o próximo elemento
@@ -135,7 +135,7 @@ public class Principal {
         int i = 0;
         int t = _inicio;
         String temp = "";
-        while (i < N) {
+        while (i < n) {
             temp = temp + (t) + "-" + _fila[t] + "\n";
             t = (t + 1) % TAMANHO_FILA;
             i = i + 1;
@@ -146,10 +146,10 @@ public class Principal {
     /**
      * Retorna se a fila está cheia.
      *
-     * @return Verdadeiro ou falso se a lista está cheia.
+     * @return Verdadeiro ou falso se a fila está cheia.
      */
     public static boolean estaCheia() {
-        return N == TAMANHO_FILA;
+        return n == TAMANHO_FILA;
     }
 
     /**
@@ -166,8 +166,8 @@ public class Principal {
      *
      * @return A quantidade de elementos da fila.
      */
-    public static int tamanhoFila() {
-        return N;
+    public static int quantidadeFila() {
+        return n;
     }
 
     /**
@@ -185,11 +185,16 @@ public class Principal {
 
         //Menu para controle da fila
         while (opcao != 9) {	//Monta o menu de opcoes
-            opcao = Integer.parseInt(JOptionPane.showInputDialog("Menu de Lista\n"
-                    + "1 - Enfileirar           \n2 - Consultar Inicio\n"
-                    + "3 - Alterar Inicio       \n4 - Desenfileirar\n"
-                    + "5 - Está cheia?          \n6 - Está vazia?\n"
-                    + "7 - Tamanho da Fila      \n8 - Listar\n"
+            opcao = Integer.parseInt(JOptionPane.showInputDialog("\t### Fila Sequencial Circular###\n"
+                    + "Selecione a opcao desejada:\n"
+                    + "1 - Enfileirar\n"
+                    + "2 - Consultar Inicio\n"
+                    + "3 - Alterar Inicio\n"
+                    + "4 - Desenfileirar\n"
+                    + "5 - Está cheia?\n"
+                    + "6 - Está vazia?\n"
+                    + "7 - Tamanho da Fila\n"
+                    + "8 - Listar\n"
                     + "9 - Sair"));
             switch (opcao) {
                 case 1: {
@@ -201,12 +206,16 @@ public class Principal {
                     break;
                 }
                 case 2: {
-                    int valor = acessarInicio(fila, N, inicio);
+                    int valor = acessarInicio(fila, n, inicio);
                     JOptionPane.showMessageDialog(null, "O valor do início é " + valor);
                     break;
                 }
                 case 3: {
-                    alterarInicio(fila, N, inicio, leitura());
+                    if (alterarInicio(fila, n, inicio, leitura())) {
+                        JOptionPane.showMessageDialog(null, "Alteração do início realizada com sucesso!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Alteração do início não realizada!");
+                    }
                     break;
                 }
                 case 4: {
@@ -227,7 +236,7 @@ public class Principal {
                     break;
                 }
                 case 7: {
-                    JOptionPane.showMessageDialog(null, "Tamanho da fila : " + tamanhoFila());
+                    JOptionPane.showMessageDialog(null, "Quantidade de elementos na fila : " + quantidadeFila());
                     break;
                 }
                 case 8: {
