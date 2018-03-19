@@ -185,8 +185,8 @@ public class Principal {
 
         //Menu para controle da fila
         while (opcao != 9) {	//Monta o menu de opcoes
-            opcao = Integer.parseInt(JOptionPane.showInputDialog("\t### Fila Sequencial Circular###\n"
-                    + "Selecione a opcao desejada:\n"
+            opcao = Integer.parseInt(JOptionPane.showInputDialog("\t### Fila Sequencial Circular ###\n"
+                    + "Selecione a opção desejada:\n"
                     + "1 - Enfileirar\n"
                     + "2 - Consultar Inicio\n"
                     + "3 - Alterar Inicio\n"
