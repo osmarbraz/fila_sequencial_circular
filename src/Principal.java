@@ -156,9 +156,18 @@ public class Principal {
     }
 
     /**
+     * Retorna a quantidade de elementos da fila.
+     *
+     * @return A quantidade de elementos da fila.
+     */
+    public static int tamanhoFila() {
+        return N;
+    }
+
+    /**
      * Programa principal.
-     * 
-     * @param args 
+     *
+     * @param args
      */
     public static void main(String[] args) {
         /**
@@ -174,7 +183,8 @@ public class Principal {
                     + "1 - Enfileirar           \n2 - Consultar Inicio\n"
                     + "3 - Alterar Inicio       \n4 - Desenfileirar\n"
                     + "5 - Está cheia?          \n6 - Está vazia?\n"
-                    + "7 - Listar		\n9 - Sair"));
+                    + "7 - Tamanho da Fila      \n8 - Listar\n"
+                    + "9 - Sair"));
             switch (opcao) {
                 case 1:
                     if (enfileirar(fila, leitura()) == true) {
@@ -204,7 +214,14 @@ public class Principal {
                     JOptionPane.showMessageDialog(null, "Está vazia : " + estaVazia());
                     break;
                 case 7:
-                    listar(fila, inicio, fim);
+                    JOptionPane.showMessageDialog(null, "Tamanho da fila : " + tamanhoFila());
+                    break;
+                case 8:
+                    if (estaVazia()) {
+                        JOptionPane.showMessageDialog(null, "Lista vazia!");
+                    } else {
+                        listar(fila, inicio, fim);
+                    }
                     break;
                 default:
                     break;
