@@ -40,23 +40,23 @@ public class Principal {
      *
      * Também chamado de Enqueue.
      *
-     * @param _fila Fila onde será inserido o novo elemento.
-     * @param _valor Valor a ser inserido na fila.
+     * @param fila Fila onde será inserido o novo elemento.
+     * @param valor Valor a ser inserido na fila.
      * @return verdadeiro ou falso se conseguiu enfileirar
      */
-    public static boolean enfileirar(int[] _fila, int _valor) {
+    public static boolean enfileirar(int[] fila, int valor) {
         if (n < TAMANHO_FILA) {
             //Calcula a próxima posição
             fim = fim % TAMANHO_FILA;
             //Adiciona o valor a fila
-            _fila[fim] = _valor;
+            fila[fim] = valor;
             //Incrementa a próxima posição
             fim = fim + 1;
             //Incrementa a quantidade de elementos
             n = n + 1;
             return true;
         } else {
-            System.out.println("Fila Cheia!");
+            System.out.println("Enfileirar - Fila Cheia.");
             return false;
         }
     }
@@ -66,16 +66,16 @@ public class Principal {
      *
      * Também chamado de Peek.
      *
-     * @param _fila Fila que contem os nós.
-     * @param _n Quantidade de nós na fila.
-     * @param _inicio Início da fila.
+     * @param fila Fila que contem os nós.
+     * @param n Quantidade de nós na fila.
+     * @param inicio Início da fila.
      * @return o valor ou -1 se não conseguiu acessar.
      */
-    public static int acessarInicio(int[] _fila, int _n, int _inicio) {
-        if (_n != 0) {
-            return _fila[_inicio];
+    public static int acessarInicio(int[] fila, int n, int inicio) {
+        if (n != 0) {
+            return fila[inicio];
         } else {
-            System.out.println("Fila Vazia");
+            System.out.println("Acessar início - Fila Vazia.");
             return -1;
         }
     }
@@ -83,18 +83,18 @@ public class Principal {
     /**
      * Altera o dado primeiro nó da fila.
      *
-     * @param _fila Fila que contem os nós.
-     * @param _n Quantidade de nós na fila.
-     * @param _inicio Início da fila.
-     * @param _valor Novo valor para o primeiro nó.
+     * @param fila Fila que contem os nós.
+     * @param n Quantidade de nós na fila.
+     * @param inicio Início da fila.
+     * @param dado Novo valor para o primeiro nó.
      * @return verdadeiro ou falso se conseguiu alterar.
      */
-    public static boolean alterarInicio(int[] _fila, int _n, int _inicio, int _valor) {
-        if (_n != 0) {
-            _fila[_inicio] = _valor;
+    public static boolean alterarInicio(int[] fila, int n, int inicio, int dado) {
+        if (n != 0) {
+            fila[inicio] = dado;
             return true;
         } else {
-            System.out.println("Fila Vazia");
+            System.out.println("Alterar início - Fila Vazia.");
             return false;
         }
     }
@@ -104,22 +104,22 @@ public class Principal {
      *
      * Também chamado de Dequeue.
      *
-     * @param _fila fila que contêm os nós.
+     * @param fila fila que contêm os nós.
      * @return O nó que foi desemfileirado.
      */
-    public static int desenfileirar(int[] _fila) {
+    public static int desenfileirar(int[] fila) {
         if (n != 0) {
             //Posiciona no próximo inicio
             inicio = inicio % TAMANHO_FILA;
             //Decrementa a quantidade de nós
             n = n - 1;
             //Guarda o valor do inicio
-            int valor = _fila[inicio];
+            int valor = fila[inicio];
             //Incrementa para o próximo elemento
             inicio = inicio + 1;
             return valor;
         } else {
-            System.out.println("Fila Vazia");
+            System.out.println("Desemfileira - Fila Vazia.");
             return -1;
         }
     }
@@ -127,20 +127,22 @@ public class Principal {
     /**
      * Lista os dados da fila.
      *
-     * @param _fila Fila para exibir os dados.
-     * @param _inicio Início da fila.
-     * @param _fim Finá da fila.
+     * @param fila Fila para exibir os dados.
+     * @param inicio Início da fila.
+     * @param fim Final da fila.
+     * @return Uma String com os dados da fila.
      */
-    public static void listar(int[] _fila, int _inicio, int _fim) {
+    public static String listar(int[] fila, int inicio, int fim) {
         int i = 0;
-        int t = _inicio;
+        int t = inicio;
+        //String de retorno
         String temp = "";
         while (i < n) {
-            temp = temp + (t) + "-" + _fila[t] + "\n";
+            temp = temp + (t) + "-" + fila[t] + "\n";
             t = (t + 1) % TAMANHO_FILA;
             i = i + 1;
         }
-        JOptionPane.showMessageDialog(null, "Listagem \n" + temp);
+        return temp;
     }
 
     /**
@@ -166,7 +168,7 @@ public class Principal {
      *
      * @return A quantidade de elementos da fila.
      */
-    public static int quantidadeFila() {
+    public static int getN() {
         return n;
     }
 
@@ -180,11 +182,13 @@ public class Principal {
          * Declaração da fila
          */
         int fila[] = new int[TAMANHO_FILA];
+        
         // Controla o menu da fila
         int opcao = -1;
 
         //Menu para controle da fila
-        while (opcao != 9) {	//Monta o menu de opcoes
+        while (opcao != 9) {	
+            //Monta o menu de opções
             opcao = Integer.parseInt(JOptionPane.showInputDialog("\t### Fila Sequencial Circular ###\n"
                     + "Selecione a opção desejada:\n"
                     + "1 - Enfileirar\n"
@@ -198,7 +202,9 @@ public class Principal {
                     + "9 - Sair"));
             switch (opcao) {
                 case 1: {
-                    if (enfileirar(fila, leitura()) == true) {
+                    //Preenche o valor do dado
+                    int dado = leitura();
+                    if (enfileirar(fila, dado) == true) {
                         JOptionPane.showMessageDialog(null, "Valor emfileirado com Sucesso!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Valor não emfileirado!");
@@ -206,12 +212,18 @@ public class Principal {
                     break;
                 }
                 case 2: {
-                    int valor = acessarInicio(fila, n, inicio);
-                    JOptionPane.showMessageDialog(null, "O valor do início é " + valor);
+                     if (!estaVazia()) {
+                        int dado = acessarInicio(fila, n, inicio);
+                        JOptionPane.showMessageDialog(null, "O valor do início é " + dado);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Fila vazia!");
+                    }
                     break;
                 }
                 case 3: {
-                    if (alterarInicio(fila, n, inicio, leitura())) {
+                    //Preenche o valor do dado
+                    int dado = leitura();
+                    if (alterarInicio(fila, n, inicio, dado)) {
                         JOptionPane.showMessageDialog(null, "Alteração do início realizada com sucesso!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Alteração do início não realizada!");
@@ -219,9 +231,9 @@ public class Principal {
                     break;
                 }
                 case 4: {
-                    int valor = desenfileirar(fila);
-                    if (valor != -1) {
-                        JOptionPane.showMessageDialog(null, "O valor " + valor + " foi desenfileirado com Sucesso!");
+                    int dado = desenfileirar(fila);
+                    if (dado != -1) {
+                        JOptionPane.showMessageDialog(null, "O valor " + dado + " foi desenfileirado com Sucesso!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Valor não desenfileirado!");
                     }
@@ -236,20 +248,20 @@ public class Principal {
                     break;
                 }
                 case 7: {
-                    JOptionPane.showMessageDialog(null, "Quantidade de elementos na fila : " + quantidadeFila());
+                    JOptionPane.showMessageDialog(null, "Quantidade de elementos na fila : " + getN());
                     break;
                 }
                 case 8: {
-                    if (estaVazia()) {
-                        JOptionPane.showMessageDialog(null, "Lista vazia!");
-                    } else {
-                        listar(fila, inicio, fim);
+                    if (!estaVazia()) {                        ;
+                        JOptionPane.showMessageDialog(null, "Listagem \n" + listar(fila, inicio, fim));
+                    } else {                        
+                        JOptionPane.showMessageDialog(null, "Fila vazia!");
                     }
                     break;
                 }
                 default:
                     break;
-            }
+            }//Fim Switch
         }//Fim While
-    }
+    }//Fim main
 }
