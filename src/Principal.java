@@ -86,12 +86,12 @@ public class Principal {
      * @param fila Fila que contem os nós.
      * @param n Quantidade de nós na fila.
      * @param inicio Início da fila.
-     * @param dado Novo valor para o primeiro nó.
+     * @param valor Novo valor para o primeiro nó.
      * @return verdadeiro ou falso se conseguiu alterar.
      */
-    public static boolean alterarInicio(int[] fila, int n, int inicio, int dado) {
+    public static boolean alterarInicio(int[] fila, int n, int inicio, int valor) {
         if (n != 0) {
-            fila[inicio] = dado;
+            fila[inicio] = valor;
             return true;
         } else {
             System.out.println("Alterar início - Fila Vazia.");
@@ -168,7 +168,7 @@ public class Principal {
      *
      * @return A quantidade de elementos da fila.
      */
-    public static int getN() {
+    public static int getQuantidade() {
         return n;
     }
 
@@ -248,7 +248,7 @@ public class Principal {
                     break;
                 }
                 case 7: {
-                    JOptionPane.showMessageDialog(null, "Quantidade de elementos na fila : " + getN());
+                    JOptionPane.showMessageDialog(null, "Quantidade de elementos na fila : " + getQuantidade());
                     break;
                 }
                 case 8: {
